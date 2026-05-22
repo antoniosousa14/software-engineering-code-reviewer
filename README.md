@@ -47,30 +47,30 @@ The skill uses practical versions of:
 
 ```text
 software-engineering-code-reviewer/
-├── README.md
-├── CHANGELOG.md
-├── LICENSE
-├── .gitattributes
-├── .gitignore
-├── AGENTS.md
-├── CLAUDE.md
-├── CODEX.md
-├── ANTIGRAVITY.md
-├── CURSOR.md
-├── skill/
-│   ├── SKILL.md
-│   ├── agents/
-│   │   └── openai.yaml
-│   └── references/
-│       ├── review-behavior.md
-│       ├── engineering-rubric.md
-│       ├── furps-quality-lens.md
-│       ├── architecture-principles.md
-│       ├── refactoring-playbook.md
-│       ├── naming-and-style.md
-│       └── response-templates.md
-└── dist/
-    └── skill.zip
+|-- README.md
+|-- CHANGELOG.md
+|-- LICENSE
+|-- .gitattributes
+|-- .gitignore
+|-- AGENTS.md
+|-- CLAUDE.md
+|-- CODEX.md
+|-- ANTIGRAVITY.md
+|-- CURSOR.md
+|-- skill/
+|   |-- SKILL.md
+|   |-- agents/
+|   |   `-- openai.yaml
+|   `-- references/
+|       |-- review-behavior.md
+|       |-- engineering-rubric.md
+|       |-- furps-quality-lens.md
+|       |-- architecture-principles.md
+|       |-- refactoring-playbook.md
+|       |-- naming-and-style.md
+|       `-- response-templates.md
+`-- dist/
+    `-- skill.zip
 ```
 
 ## What is inside the skill
@@ -99,41 +99,41 @@ Open ChatGPT's current Skills upload or import flow and upload `dist/skill.zip`.
 
 ## Use with Codex
 
-1. Clone or open this repository.
-2. Read `AGENTS.md` and `CODEX.md`.
-3. Edit files under `skill/`.
-4. Rebuild `dist/skill.zip` from the contents of `skill/`.
-5. Inspect the zip contents and confirm `SKILL.md` is at the zip root.
-6. Commit the changes with a clear message.
+Use this skill as review guidance when asking Codex to work on your code.
+
+1. Add the skill instructions to Codex using the current custom-instructions, context, or skill flow supported by your environment.
+2. Provide the codebase, file, diff, or code snippet you want reviewed.
+3. Ask Codex for the review style you want, such as a quick review, full refactor, architecture review, or test plan.
+4. Tell Codex whether behavior must be preserved.
+5. Ask for explanations only when you want mentor-style teaching.
 
 ## Use with Claude Code
 
-1. Clone or open this repository.
-2. Read `AGENTS.md` and `CLAUDE.md`.
-3. Edit files under `skill/`.
-4. Rebuild `dist/skill.zip` from the contents of `skill/`.
-5. Inspect the zip contents and confirm no outer repository files are included.
-6. Commit the changes with a clear message.
+Use this skill as senior-reviewer guidance when asking Claude Code to inspect or improve code.
+
+1. Add the skill instructions to Claude Code using the current project-instructions or context mechanism.
+2. Open the project or provide the relevant files.
+3. Ask for concrete review findings, a behavior-preserving refactor, or test recommendations.
+4. Include important requirements, constraints, and expected behavior.
 
 ## Use with Google Antigravity
 
-1. Clone or open this repository.
-2. Read `AGENTS.md` and `ANTIGRAVITY.md`.
-3. Edit files under `skill/`.
-4. Rebuild `dist/skill.zip` from the contents of `skill/`.
-5. Inspect the zip contents.
-6. Commit the changes.
+Use this skill as code-quality guidance when asking Antigravity to review or improve a project.
+
+1. Attach or load the skill instructions using Antigravity's current instruction or context flow.
+2. Provide the relevant code and describe what the software is supposed to do.
+3. Ask for a senior-level review focused on correctness, architecture, maintainability, and tests.
 
 ## Use with Cursor / Windsurf / Cline / Aider
 
-1. Open this repository in the editor or agent environment.
-2. Add `AGENTS.md` and the relevant agent instruction file to context.
-3. Ask the agent to modify files under `skill/`.
-4. Rebuild `dist/skill.zip` from `skill/`.
-5. Inspect the zip contents.
-6. Commit the changes.
+Use this skill as instruction context for editor-based coding agents.
 
-Platform-specific UI can evolve. This repository provides the skill package and maintenance instructions; each platform's current import or context workflow should be followed where applicable.
+1. Open the codebase you want reviewed in your editor.
+2. Add the skill instructions to the agent's context or custom instructions.
+3. Ask the agent to review, refactor, or improve your code using senior software engineering standards.
+4. Provide constraints such as language, framework, expected behavior, and whether the change should be minimal.
+
+Platform-specific UI can evolve. Follow the platform's current official flow for adding custom instructions, attaching context, or importing skills.
 
 ## Usage tutorials
 
@@ -157,73 +157,9 @@ For refactoring, provide:
 - The preferred scope of change
 - Whether you want patch-sized changes or a fuller redesign
 
-## Updating the skill
+## Getting the latest version
 
-Update files under `skill/`. Keep `SKILL.md` concise and move detailed behavior into `skill/references/`.
-
-After every meaningful change:
-
-1. Validate `skill/SKILL.md` frontmatter contains only `name` and `description`.
-2. Rebuild `dist/skill.zip`.
-3. Inspect the zip contents.
-4. Confirm outer repository files are not included.
-5. Commit the source and generated package together.
-
-## Development workflow
-
-1. Read `AGENTS.md`.
-2. Choose the agent-specific instruction file if relevant.
-3. Edit the smallest useful set of files.
-4. Keep the skill language-agnostic.
-5. Avoid numeric scoring systems.
-6. Preserve "senior reviewer by default, mentor only when asked."
-7. Package the skill.
-8. Verify the package.
-9. Commit the change.
-
-## Packaging instructions
-
-PowerShell:
-
-```powershell
-New-Item -ItemType Directory -Force dist
-Compress-Archive -Path skill\* -DestinationPath dist\skill.zip -Force
-```
-
-Unix-like shells:
-
-```sh
-mkdir -p dist
-cd skill
-rm -f ../dist/skill.zip
-zip -r ../dist/skill.zip .
-```
-
-The zip root must contain `SKILL.md`, `agents/`, and `references/`. It must not contain the outer `skill/` folder itself.
-
-## Verifying the zip
-
-Use:
-
-```sh
-tar -tf dist/skill.zip
-```
-
-Expected entries:
-
-```text
-SKILL.md
-agents/openai.yaml
-references/review-behavior.md
-references/engineering-rubric.md
-references/furps-quality-lens.md
-references/architecture-principles.md
-references/refactoring-playbook.md
-references/naming-and-style.md
-references/response-templates.md
-```
-
-Do not publish the zip if it contains `README.md`, `CHANGELOG.md`, `LICENSE`, `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, `ANTIGRAVITY.md`, `CURSOR.md`, or an outer `software-engineering-code-reviewer/` directory.
+Download the latest `dist/skill.zip` from this repository and import it again using the current ChatGPT Skills flow. If your agent platform uses custom instructions instead of skill packages, refresh the instruction context from the latest skill files.
 
 ## Examples of prompts
 
@@ -263,10 +199,6 @@ No. It uses checklist-style review, concrete findings, and actionable improvemen
 ### Does it replace tests or static analysis?
 
 No. It guides reasoning and review behavior. Tests, linters, type checkers, security scanners, and profilers remain valuable.
-
-### Should `dist/skill.zip` be committed?
-
-Yes. This repository keeps the generated ChatGPT Skill package in `dist/skill.zip` so it is ready to publish or upload.
 
 ## License
 
