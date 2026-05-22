@@ -4,27 +4,49 @@
 
 Software Engineering Code Reviewer is an AI coding agent instruction pack for senior-level code review, refactoring, architecture guidance, and maintainability.
 
-It is primarily designed for coding agents such as Codex, Claude Code, Cursor, Windsurf, Cline, Aider, Google Antigravity, and similar tools.
+It is used by giving repository files as context to coding agents such as Codex, Claude Code, Cursor, Windsurf, Cline, Aider, Google Antigravity, and similar tools.
 
-It also includes an optional ChatGPT Skill package at `dist/skill.zip`.
+It also ships an optional ChatGPT Skill package at `dist/skill.zip`.
 
-Use this repository as instruction context for AI coding agents. Coding agents read the repository instructions; they do not use the ChatGPT Skill zip.
+- Coding agents use Markdown files in the repository.
+- Coding agents do not install or consume `dist/skill.zip`.
+- `dist/skill.zip` is only for ChatGPT Skill installation.
+- Rebuilding `dist/skill.zip` is only a maintainer task, and only needed when files under `skill/` change.
+- `skill/agents/openai.yaml` exists only for ChatGPT Skill metadata.
+
+## Mental model
+
+| Situation | What to use | What not to use |
+| --- | --- | --- |
+| Reviewing or refactoring code with Codex, Claude Code, Cursor, Windsurf, Cline, Aider, Antigravity, or similar agents | `AGENTS.md`, the relevant agent file, `skill/SKILL.md`, and focused files in `skill/references/` | `dist/skill.zip` |
+| Installing the optional ChatGPT Skill | `dist/skill.zip` | the full GitHub repository zip |
+| Editing this repository's guidance | source files in the repository | editing files inside `dist/skill.zip` |
+| Updating the optional ChatGPT Skill package | rebuild `dist/skill.zip` from `skill/` | packaging the whole repository |
+| Changing only README or root documentation | commit the documentation changes | rebuilding `dist/skill.zip` |
+
+- `AGENTS.md` is the main entry point for coding agents.
+- Agent-specific files adapt repository usage for each tool.
+- `skill/SKILL.md` and `skill/references/*.md` contain guidance that both coding agents and the optional ChatGPT Skill can use.
+- `skill/agents/openai.yaml` is ChatGPT-only metadata.
+- `dist/skill.zip` is only the optional ChatGPT Skill package.
 
 ## Quick start
 
-### Primary use: use with an AI coding agent
+### Primary: use with an AI coding agent
 
-Use this when working with Codex, Claude Code, Cursor, Windsurf, Cline, Aider, Google Antigravity, or a similar coding agent.
+Use this for Codex, Claude Code, Cursor, Windsurf, Cline, Aider, Google Antigravity, or similar tools.
 
 1. Open this repository in the coding agent or editor.
 2. Ask the agent to read `AGENTS.md`.
-3. Ask it to read the matching agent file when relevant:
+3. Ask it to read the relevant agent file:
    - `CODEX.md` for Codex
    - `CLAUDE.md` for Claude Code
    - `ANTIGRAVITY.md` for Google Antigravity
    - `CURSOR.md` for Cursor, Windsurf, Cline, Aider, or similar editor-based agents
-4. Ask the agent to use the guidance in `skill/references/` when reviewing, refactoring, or improving code.
-5. Provide the code, requirements, constraints, and the scope of the requested change.
+4. Ask it to read `skill/SKILL.md` and focused files in `skill/references/` when deeper guidance is needed.
+5. Give it the code, requirements, constraints, and desired scope.
+
+Do not give `dist/skill.zip` to coding agents. That zip is only for ChatGPT Skill installation.
 
 Example prompts:
 
@@ -149,7 +171,7 @@ software-engineering-code-reviewer/
 
 Outer repository files document the project and guide maintenance. They must stay outside the package archive.
 
-## Using the instruction pack
+## Usage mode
 
 ### Use with coding agents
 
@@ -199,11 +221,13 @@ Example prompts:
 - Mention trade-offs when a design choice changes complexity, coupling, performance, or flexibility.
 - Avoid numeric code-quality scores.
 
-## Updating packaged guidance
+## Maintainer mode
 
-This section is for maintainers of the optional ChatGPT Skill package. Coding-agent users do not need `dist/skill.zip`.
+This section is for editing this repository. Coding-agent users applying the guidance to normal coding work do not need `dist/skill.zip`.
 
-When changes under `skill/` should ship in ChatGPT, rebuild `dist/skill.zip`. Keep packaged source files and the generated archive synchronized in the same change.
+Edit source files in the repository. Do not edit files inside `dist/skill.zip`.
+
+When files under `skill/` change, rebuild `dist/skill.zip` so the optional ChatGPT Skill package stays synchronized. README-only and root-documentation-only changes do not require a package rebuild.
 
 ## Development workflow
 
@@ -212,11 +236,11 @@ When changes under `skill/` should ship in ChatGPT, rebuild `dist/skill.zip`. Ke
 3. Keep guidance language-agnostic.
 4. Avoid numeric scoring.
 5. Preserve the senior reviewer behavior.
-6. Rebuild and verify the zip when packaged files under `skill/` change.
+6. Rebuild and verify the zip when files under `skill/` change.
 
-## Packaging instructions
+## Optional ChatGPT package
 
-These commands are for maintainers rebuilding the optional ChatGPT Skill package after packaged source changes.
+These commands are for maintainers rebuilding the optional ChatGPT Skill package after files under `skill/` change.
 
 Run the packaging recipe from the repository root:
 

@@ -2,20 +2,32 @@
 
 Read `AGENTS.md` first.
 
-For Codex-style agents:
+## Usage mode
+
+For Codex-style agents applying the guidance to coding work:
+
+- Use this repository as coding-agent instruction context.
+- Do not install, pass, or consume `dist/skill.zip`.
+- Read `skill/SKILL.md` and focused files in `skill/references/` when the task needs deeper guidance.
+- Preserve senior-reviewer behavior and the "mentor only when asked" rule.
+- Do not add numeric scoring systems.
+
+## Maintainer mode
+
+When editing this repository:
 
 - Modify files directly in this repository.
 - Keep changes minimal, focused, and reviewable.
-- Use this repository as coding-agent instruction context; do not use `dist/skill.zip` for Codex work.
-- Read `skill/SKILL.md` and focused files in `skill/references/` when the task needs deeper guidance.
 - Keep `SKILL.md` compact; put detailed behavior in `skill/references/`.
 - Preserve senior-reviewer behavior and the "mentor only when asked" rule.
 - Do not add numeric scoring systems.
-- Rebuild and verify `dist/skill.zip` only when packaged files under `skill/` change.
+- Rebuild and verify `dist/skill.zip` only when files under `skill/` change.
 - Create a clean commit message.
 - Do not invent external installation facts without checking current official docs.
 
-Optional ChatGPT package reminder:
+## Optional ChatGPT package
+
+Use this package flow only when files under `skill/` change:
 
 ```bash
 mkdir -p dist

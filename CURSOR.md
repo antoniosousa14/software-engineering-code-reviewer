@@ -2,14 +2,25 @@
 
 Read `AGENTS.md` first.
 
-For editor-based coding agents:
+## Usage mode
+
+For editor-based coding agents applying the guidance to coding work:
+
+- Use repository files as instruction context.
+- Editor-based coding agents do not install, pass, or consume `dist/skill.zip`.
+- Maintain "senior reviewer by default, mentor only when asked."
+
+## Maintainer mode
+
+When editing this repository:
 
 - Use repository-wide context carefully.
 - Avoid broad rewrites.
 - Modify files under `skill/` when changing skill behavior.
-- Use repository files as instruction context. Editor-based coding agents do not use `dist/skill.zip`.
 - Keep docs and skill references synchronized.
 - Preserve the compact `SKILL.md` plus modular references structure.
-- Maintain "senior reviewer by default, mentor only when asked."
-- Rebuild and verify `dist/skill.zip` only when packaged files under `skill/` change.
+- Rebuild and verify `dist/skill.zip` only when files under `skill/` change.
+
+## Optional ChatGPT package
+
 - Inspect zip contents before committing when the package is rebuilt.
