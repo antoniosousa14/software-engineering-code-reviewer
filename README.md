@@ -50,6 +50,7 @@ software-engineering-code-reviewer/
 ├── README.md
 ├── CHANGELOG.md
 ├── LICENSE
+├── .gitattributes
 ├── .gitignore
 ├── AGENTS.md
 ├── CLAUDE.md
@@ -194,6 +195,7 @@ Unix-like shells:
 ```sh
 mkdir -p dist
 cd skill
+rm -f ../dist/skill.zip
 zip -r ../dist/skill.zip .
 ```
 
