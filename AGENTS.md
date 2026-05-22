@@ -2,9 +2,9 @@
 
 ## Project purpose
 
-This repository publishes a ChatGPT Skill named `software-engineering-code-reviewer`. The skill guides AI coding agents to review, refactor, write, and improve code with senior software engineering standards across programming languages.
+This repository provides multi-agent guidance for senior software engineering code review and includes a ChatGPT Skill named `software-engineering-code-reviewer`. The guidance helps AI coding agents review, refactor, write, and improve code with senior software engineering standards across programming languages.
 
-The skill is instruction and reasoning guidance. It is not a code execution tool.
+The packaged skill is instruction and reasoning guidance. It is not a code execution tool.
 
 ## Repository structure
 

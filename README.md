@@ -2,46 +2,58 @@
 
 ## What this is
 
-Software Engineering Code Reviewer is a ChatGPT Skill that guides an AI coding agent to review, refactor, write, and improve code with senior software engineering standards.
+Software Engineering Code Reviewer is an AI agent guidance repository with an installable ChatGPT Skill package.
 
-It is not a code execution tool. It is an instruction and reasoning skill for agentic coding tools that need to produce clear, maintainable, testable, idiomatic, architecture-aware software across programming languages.
+This repository provides AI-agent guidance for senior-level code review, refactoring, architecture improvement, and maintainability work across programming languages. It is meant for Codex, Claude Code, Google Antigravity, Cursor, Windsurf, Cline, Aider, ChatGPT, and similar AI coding agents.
+
+The ChatGPT-specific source and package are contained inside the broader repository. Use `skill/` as the source of the skill. Use `dist/skill.zip` as the installable ChatGPT Skill package.
 
 ## What problem it solves
 
-AI coding agents often optimize for code that runs, compiles, or satisfies a narrow prompt. That is not enough for production software.
+AI-generated code often works while still falling short of professional engineering standards. It can hide weak architecture, poor maintainability, low testability, unclear naming, leaky responsibilities, fragile error handling, or shortcuts that raise the cost of the next change.
 
-This skill pushes the agent to evaluate code through maintainability, correctness, testability, encapsulation, separation of concerns, error handling, architecture, and long-term change cost. It helps move prototype, beginner, messy, or "vibe code" toward professional engineering quality without forcing unnecessary patterns.
+This guidance pushes an agent past "it runs" toward code a team can review, test, evolve, and defend technically.
 
 ## Philosophy
 
-The agent should not say code is good just because it works. It should act like a direct senior reviewer: diagnose the important issues, preserve existing behavior before refactoring, propose concrete improvements, and explain trade-offs when they matter.
+Do not optimize only for code that works. Optimize for code that is clear, maintainable, testable, extensible, robust, idiomatic, and architecture-aware.
 
-The skill is intentionally practical. It avoids numeric scores, academic theory, and pattern-heavy rewrites. A simple well-named function is often better than an elaborate abstraction.
+Stay practical. Avoid overengineering, pattern abuse, and rewrites that add ceremony without reducing real complexity. A simple well-named function can be better than an unnecessary design pattern.
 
-## What the skill enforces
+Professional code is code that a team can maintain, test, evolve, and defend technically.
 
-- Requirements awareness and behavior preservation
-- Clear design and coherent architecture
-- Separation of concerns and single responsibility
-- High cohesion and low coupling
-- Encapsulation and protection of invariants
-- Appropriate abstraction without overengineering
-- Polymorphism when it removes real behavioral branching
-- Dependency inversion when it reduces coupling to volatile details
-- Idiomatic naming and style for the target language
-- Validation, error handling, and security basics
+## What the guidance enforces
+
+- Requirements awareness
+- Coherent design
+- Clean architecture where useful
+- Separation of concerns
+- Single responsibility
+- High cohesion
+- Low coupling
+- Encapsulation
+- Protection of invariants
+- Appropriate abstraction
+- Polymorphism when useful
+- Dependency inversion when useful
+- Language-idiomatic naming and style
+- Validation
+- Error handling
+- Security basics
 - Performance awareness without premature optimization
-- Testability, maintainability, and useful documentation
+- Testability
+- Maintainability
+- Useful documentation
+- Avoiding overengineering
 
 ## Quality lenses used
 
-The skill uses practical versions of:
-
-- FURPS+: Functionality, Usability, Reliability, Performance, Supportability, plus constraints
-- SOLID, applied pragmatically rather than dogmatically
-- GRASP: Information Expert, Controller, Creator, Pure Fabrication, High Cohesion, Low Coupling, Polymorphism, and Protected Variations
-- Clean Architecture and layered architecture when the problem benefits from those boundaries
-- Domain logic separated from UI, database, network, filesystem, framework, and infrastructure details when that separation improves clarity and testability
+- FURPS+
+- SOLID, not dogmatically
+- GRASP
+- Clean Architecture or layered architecture when appropriate
+- Idiomatic language conventions
+- Maintainability and testability
 
 ## Repository structure
 
@@ -50,11 +62,10 @@ software-engineering-code-reviewer/
 |-- README.md
 |-- CHANGELOG.md
 |-- LICENSE
-|-- .gitattributes
 |-- .gitignore
 |-- AGENTS.md
-|-- CLAUDE.md
 |-- CODEX.md
+|-- CLAUDE.md
 |-- ANTIGRAVITY.md
 |-- CURSOR.md
 |-- skill/
@@ -73,132 +84,124 @@ software-engineering-code-reviewer/
     `-- skill.zip
 ```
 
+- `README.md` explains the project, installation paths, usage, and maintenance workflow.
+- `AGENTS.md` defines repository-wide instructions for coding agents.
+- `CODEX.md`, `CLAUDE.md`, `ANTIGRAVITY.md`, and `CURSOR.md` provide agent-specific repository guidance.
+- `skill/` is the source for the installable ChatGPT Skill package.
+- `dist/skill.zip` is the generated ChatGPT Skill package built from `skill/`.
+- `CHANGELOG.md`, `LICENSE`, and `.gitignore` cover release history, licensing, and repository hygiene.
+
 ## What is inside the skill
 
-The installable skill package contains only the contents of `skill/`:
+- `skill/SKILL.md` contains the main ChatGPT Skill instructions and concise behavior rules.
+- `skill/agents/openai.yaml` contains ChatGPT UI metadata.
+- `skill/references/*.md` contains modular review, architecture, refactoring, naming, and response guidance loaded when relevant.
+- `dist/skill.zip` is generated from the contents of `skill/`.
 
-- `SKILL.md`: concise trigger metadata and core behavior instructions
-- `agents/openai.yaml`: ChatGPT UI metadata
-- `references/review-behavior.md`: senior reviewer behavior rules
-- `references/engineering-rubric.md`: checklist-style engineering review rubric
-- `references/furps-quality-lens.md`: practical FURPS+ review lens
-- `references/architecture-principles.md`: architecture and design guidance
-- `references/refactoring-playbook.md`: problem-to-action refactoring guide
-- `references/naming-and-style.md`: language-aware naming and style guidance
-- `references/response-templates.md`: adaptable response templates
-
-Outer repository files are documentation and agent instructions. They are not included inside `dist/skill.zip`.
+Outer repository files document the project and guide maintenance. They must stay outside the package archive.
 
 ## Installation tutorials
 
-## Install in ChatGPT
+### Install in ChatGPT
 
-Use `dist/skill.zip` as the installable skill package.
+Use `dist/skill.zip` as the installable package.
 
-Open ChatGPT's current Skills upload or import flow and upload `dist/skill.zip`. Exact UI wording may change, so follow the current ChatGPT Skills interface or official import instructions available in the product.
+Follow the current ChatGPT Skills upload or import UI. Exact UI labels may change, so this repository intentionally provides the zip rather than hardcoding UI-specific steps.
 
-## Use with Codex
+### Use with Codex
 
-Use this skill as review guidance when asking Codex to work on your code.
+1. Clone or open the repository.
+2. Read `AGENTS.md` and `CODEX.md`.
+3. Edit source files under `skill/`.
+4. Rebuild `dist/skill.zip`.
+5. Inspect the zip contents.
+6. Commit both source changes and the updated zip.
 
-1. Add the skill instructions to Codex using the current custom-instructions, context, or skill flow supported by your environment.
-2. Provide the codebase, file, diff, or code snippet you want reviewed.
-3. Ask Codex for the review style you want, such as a quick review, full refactor, architecture review, or test plan.
-4. Tell Codex whether behavior must be preserved.
-5. Ask for explanations only when you want mentor-style teaching.
+### Use with Claude Code
 
-## Use with Claude Code
+1. Clone or open the repository.
+2. Read `AGENTS.md` and `CLAUDE.md`.
+3. Edit source files under `skill/`.
+4. Rebuild `dist/skill.zip`.
+5. Inspect the zip contents.
+6. Commit both source changes and the updated zip.
 
-Use this skill as senior-reviewer guidance when asking Claude Code to inspect or improve code.
+### Use with Google Antigravity
 
-1. Add the skill instructions to Claude Code using the current project-instructions or context mechanism.
-2. Open the project or provide the relevant files.
-3. Ask for concrete review findings, a behavior-preserving refactor, or test recommendations.
-4. Include important requirements, constraints, and expected behavior.
+1. Clone or open the repository.
+2. Read `AGENTS.md` and `ANTIGRAVITY.md`.
+3. Edit source files under `skill/`.
+4. Rebuild `dist/skill.zip`.
+5. Inspect the zip contents.
+6. Commit both source changes and the updated zip.
 
-## Use with Google Antigravity
+### Use with Cursor / Windsurf / Cline / Aider
 
-Use this skill as code-quality guidance when asking Antigravity to review or improve a project.
-
-1. Attach or load the skill instructions using Antigravity's current instruction or context flow.
-2. Provide the relevant code and describe what the software is supposed to do.
-3. Ask for a senior-level review focused on correctness, architecture, maintainability, and tests.
-
-## Use with Cursor / Windsurf / Cline / Aider
-
-Use this skill as instruction context for editor-based coding agents.
-
-1. Open the codebase you want reviewed in your editor.
-2. Add the skill instructions to the agent's context or custom instructions.
-3. Ask the agent to review, refactor, or improve your code using senior software engineering standards.
-4. Provide constraints such as language, framework, expected behavior, and whether the change should be minimal.
-
-Platform-specific UI can evolve. Follow the platform's current official flow for adding custom instructions, attaching context, or importing skills.
+1. Open the repository in the editor.
+2. Add `AGENTS.md` and `CURSOR.md` to the agent context.
+3. Ask the agent to modify files under `skill/`.
+4. Rebuild `dist/skill.zip`.
+5. Inspect the zip contents.
+6. Commit both source changes and the updated zip.
 
 ## Usage tutorials
 
-After installing or loading the skill, ask the AI agent to review, refactor, write, or improve code with senior engineering standards.
+After installing the ChatGPT package or loading the repository guidance into another agent, provide the relevant code, requirements, constraints, and desired scope. State when behavior must be preserved before a refactor.
 
-Good requests include the code, language, relevant requirements, known constraints, and whether you want a quick review, full refactor, architecture review, or teaching explanation.
-
-For code review, provide:
-
-- The code or files to review
-- Expected behavior
-- Known bugs or constraints
-- Runtime, framework, or deployment context
-- Whether behavior must remain unchanged
-
-For refactoring, provide:
-
-- The current code
-- The behavior that must be preserved
-- Any tests that already exist
-- The preferred scope of change
-- Whether you want patch-sized changes or a fuller redesign
-
-## Getting the latest version
-
-Download the latest `dist/skill.zip` from this repository and import it again using the current ChatGPT Skills flow. If your agent platform uses custom instructions instead of skill packages, refresh the instruction context from the latest skill files.
-
-## Examples of prompts
+Example prompts:
 
 - "Review this code like a senior engineer and propose a refactor."
 - "Refactor this from prototype code into maintainable production code."
 - "Improve the architecture without overengineering it."
-- "Explain why your refactor is better."
 - "Review this using FURPS+."
 - "Identify coupling, cohesion, naming, encapsulation, and testability issues."
 - "Rewrite this code in a more idiomatic style for this language."
 - "Suggest tests for the important behavior."
+- "Explain why your refactor is better."
 
-## Examples of expected behavior
+## Updating the skill
 
-For a quick review, the agent should identify the most important risks first, explain their impact, and propose concrete fixes.
+Make skill changes under `skill/`, then rebuild `dist/skill.zip`. Keep source files and the generated archive synchronized in the same change.
 
-For a refactor, the agent should preserve behavior, make small coherent changes, improve naming and boundaries, and recommend tests for important behavior.
+## Development workflow
 
-For architecture feedback, the agent should separate real design problems from stylistic preferences and explain trade-offs.
+1. Edit `skill/SKILL.md` only for core behavior.
+2. Put detailed guidance in `skill/references/`.
+3. Keep guidance language-agnostic.
+4. Avoid numeric scoring.
+5. Preserve the senior reviewer behavior.
+6. Rebuild and verify the zip after every change.
 
-For teaching mode, the agent should slow down and explain why the proposed design is better, but only when the user asks for that style.
+## Packaging instructions
 
-## FAQ
+Run the packaging recipe from the repository root:
 
-### Is this skill tied to one programming language?
+```bash
+mkdir -p dist
+rm -f dist/skill.zip
 
-No. It is language-agnostic and instructs the agent to follow the idioms of the language being reviewed.
+python - <<'PY'
+from pathlib import Path
+from zipfile import ZipFile, ZIP_DEFLATED
 
-### Does it enforce SOLID everywhere?
+root = Path("skill")
+out = Path("dist/skill.zip")
+out.parent.mkdir(exist_ok=True)
 
-No. SOLID is used as a lens, not a rulebook. The skill rejects pattern abuse and unnecessary abstractions.
+with ZipFile(out, "w", ZIP_DEFLATED) as zip_file:
+    for path in root.rglob("*"):
+        if path.is_file():
+            zip_file.write(path, path.relative_to(root).as_posix())
+PY
+```
 
-### Does it generate numeric code quality scores?
+Inspect the package before committing:
 
-No. It uses checklist-style review, concrete findings, and actionable improvements instead of numeric ratings.
+```bash
+python -m zipfile -l dist/skill.zip
+```
 
-### Does it replace tests or static analysis?
-
-No. It guides reasoning and review behavior. Tests, linters, type checkers, security scanners, and profilers remain valuable.
+The zip root should contain `SKILL.md`, `agents/openai.yaml`, and `references/*.md`. It should not contain outer repository files.
 
 ## License
 
