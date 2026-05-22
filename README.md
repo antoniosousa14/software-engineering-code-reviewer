@@ -21,8 +21,9 @@ This instruction pack pushes coding agents beyond code that merely runs. It help
 3. For Claude Code, use `CLAUDE.md`.
 4. For Codex, use `CODEX.md`.
 5. For Cursor, Windsurf, Cline, or Aider, use `CURSOR.md`.
-6. Ask the agent to read focused files in `software-engineering-code-reviewer/references/` when needed.
-7. Provide the code, requirements, constraints, and desired scope.
+6. For Google Antigravity, use `ANTIGRAVITY.md`.
+7. Ask the agent to read focused files in `software-engineering-code-reviewer/references/` when needed.
+8. Provide the code, requirements, constraints, and desired scope.
 
 Coding agents use repository files directly. They do not use `dist/skill.zip`.
 
