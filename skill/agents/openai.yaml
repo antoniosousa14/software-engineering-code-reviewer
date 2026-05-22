@@ -1,0 +1,4 @@
+interface:
+  display_name: "Software Engineering Code Reviewer"
+  short_description: "Senior code review and refactoring guidance."
+  default_prompt: "Use $software-engineering-code-reviewer to review this code like a senior engineer and propose concrete improvements."
