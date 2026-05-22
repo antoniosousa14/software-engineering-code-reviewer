@@ -16,10 +16,10 @@ When editing this repository:
 
 - Use repository-wide context carefully.
 - Avoid broad rewrites.
-- Modify files under `skill/` when changing skill behavior.
+- Modify files under `software-engineering-code-reviewer/` when changing skill behavior.
 - Keep docs and skill references synchronized.
 - Preserve the compact `SKILL.md` plus modular references structure.
-- Rebuild and verify `dist/skill.zip` only when files under `skill/` change.
+- Rebuild and verify `dist/skill.zip` only when files under `software-engineering-code-reviewer/` change.
 
 ## Optional ChatGPT package
 

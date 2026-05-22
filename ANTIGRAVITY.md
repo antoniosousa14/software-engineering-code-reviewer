@@ -17,9 +17,9 @@ When editing this repository:
 - Treat repository files as the source of truth.
 - Keep edits focused and easy to review.
 - Preserve multi-agent compatibility.
-- Rebuild and verify `dist/skill.zip` only when files under `skill/` change.
+- Rebuild and verify `dist/skill.zip` only when files under `software-engineering-code-reviewer/` change.
 - Do not add platform-specific files unless they are useful to repository maintenance or skill distribution.
 
 ## Optional ChatGPT package
 
-- Keep `skill/` as the only source for the optional ChatGPT Skill package.
+- Keep `software-engineering-code-reviewer/` as the only source for the optional ChatGPT Skill package.

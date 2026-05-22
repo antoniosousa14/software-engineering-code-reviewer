@@ -8,7 +8,7 @@ For Codex-style agents applying the guidance to coding work:
 
 - Use this repository as coding-agent instruction context.
 - Do not install, pass, or consume `dist/skill.zip`.
-- Read `skill/SKILL.md` and focused files in `skill/references/` when the task needs deeper guidance.
+- Read `software-engineering-code-reviewer/SKILL.md` and focused files in `software-engineering-code-reviewer/references/` when the task needs deeper guidance.
 - Preserve senior-reviewer behavior and the "mentor only when asked" rule.
 - Do not add numeric scoring systems.
 
@@ -18,16 +18,16 @@ When editing this repository:
 
 - Modify files directly in this repository.
 - Keep changes minimal, focused, and reviewable.
-- Keep `SKILL.md` compact; put detailed behavior in `skill/references/`.
+- Keep `SKILL.md` compact; put detailed behavior in `software-engineering-code-reviewer/references/`.
 - Preserve senior-reviewer behavior and the "mentor only when asked" rule.
 - Do not add numeric scoring systems.
-- Rebuild and verify `dist/skill.zip` only when files under `skill/` change.
+- Rebuild and verify `dist/skill.zip` only when files under `software-engineering-code-reviewer/` change.
 - Create a clean commit message.
 - Do not invent external installation facts without checking current official docs.
 
 ## Optional ChatGPT package
 
-Use this package flow only when files under `skill/` change:
+Use this package flow only when files under `software-engineering-code-reviewer/` change:
 
 ```bash
 mkdir -p dist
@@ -37,7 +37,7 @@ python - <<'PY'
 from pathlib import Path
 from zipfile import ZipFile, ZIP_DEFLATED
 
-root = Path("skill")
+root = Path("software-engineering-code-reviewer")
 out = Path("dist/skill.zip")
 out.parent.mkdir(exist_ok=True)
 
