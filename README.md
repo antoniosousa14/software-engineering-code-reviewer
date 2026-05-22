@@ -159,6 +159,15 @@ Example prompts:
 - "Suggest tests for the important behavior."
 - "Explain why your refactor is better."
 
+## Examples of expected behavior
+
+- Diagnose the code and its constraints before recommending a rewrite.
+- Propose concrete refactors that improve naming, boundaries, responsibilities, or tests.
+- Explain why important changes are better when they affect design, behavior, or maintenance cost.
+- Recommend tests for important behavior, regressions, and risky refactors.
+- Mention trade-offs when a design choice changes complexity, coupling, performance, or flexibility.
+- Avoid numeric code-quality scores.
+
 ## Updating the skill
 
 Make skill changes under `skill/`, then rebuild `dist/skill.zip`. Keep source files and the generated archive synchronized in the same change.
@@ -195,13 +204,67 @@ with ZipFile(out, "w", ZIP_DEFLATED) as zip_file:
 PY
 ```
 
+Windows PowerShell users can use the same Python zip method:
+
+```powershell
+python -c "from pathlib import Path; from zipfile import ZipFile, ZIP_DEFLATED; root=Path('skill'); out=Path('dist/skill.zip'); out.parent.mkdir(exist_ok=True); z=ZipFile(out,'w',ZIP_DEFLATED); [z.write(p, p.relative_to(root).as_posix()) for p in root.rglob('*') if p.is_file()]; z.close()"
+```
+
+### Verifying the zip
+
 Inspect the package before committing:
 
 ```bash
 python -m zipfile -l dist/skill.zip
 ```
 
-The zip root should contain `SKILL.md`, `agents/openai.yaml`, and `references/*.md`. It should not contain outer repository files.
+The zip should contain exactly these skill files:
+
+- `SKILL.md`
+- `agents/openai.yaml`
+- `references/review-behavior.md`
+- `references/engineering-rubric.md`
+- `references/furps-quality-lens.md`
+- `references/architecture-principles.md`
+- `references/refactoring-playbook.md`
+- `references/naming-and-style.md`
+- `references/response-templates.md`
+
+The zip must not contain:
+
+- `README.md`
+- `CHANGELOG.md`
+- `LICENSE`
+- `AGENTS.md`
+- `CODEX.md`
+- `CLAUDE.md`
+- `ANTIGRAVITY.md`
+- `CURSOR.md`
+- A top-level `skill/` folder
+- The outer repository folder
+- Windows backslash separators
+
+## FAQ
+
+### Is this only for ChatGPT?
+
+No. The repository provides guidance for AI coding agents generally. `dist/skill.zip` is the installable ChatGPT package.
+
+### Does this force overengineering?
+
+No. The guidance rejects pattern abuse and prefers the smallest design that improves clarity, maintainability, testability, and change safety.
+
+### Does it give code scores?
+
+No. It uses concrete findings, refactoring guidance, and trade-offs instead of numeric scores.
+
+### Does it work for any language?
+
+Yes. The guidance is language-agnostic and expects agents to follow idioms of the language and ecosystem under review.
+
+### What is the difference between `skill/` and `dist/skill.zip`?
+
+`skill/` is the editable source for the ChatGPT Skill. `dist/skill.zip` is the generated installable package built from that source.
 
 ## License
 

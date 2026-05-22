@@ -39,3 +39,8 @@ The packaged skill is instruction and reasoning guidance. It is not a code execu
 6. Confirm the zip root contains `SKILL.md`, `agents/openai.yaml`, and `references/*.md`.
 7. Confirm the zip does not contain outer repository files.
 8. Commit source changes and `dist/skill.zip` together.
+
+## Packaging rules
+
+- Do not use PowerShell `Compress-Archive` as the preferred packaging method because it can create zip entries with Windows backslash separators.
+- Use the cross-platform Python zip method instead.
