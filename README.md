@@ -8,6 +8,43 @@ This repository provides AI-agent guidance for senior-level code review, refacto
 
 The ChatGPT-specific source and package are contained inside the broader repository. Use `skill/` as the source of the skill. Use `dist/skill.zip` as the installable ChatGPT Skill package.
 
+## Quick start
+
+### I just want to use the ChatGPT Skill
+
+1. Download `dist/skill.zip`.
+2. Open ChatGPT.
+3. Go to the current Skills upload or import area.
+4. Upload `dist/skill.zip`.
+5. Start a new chat and ask for code review, refactoring, or architecture guidance.
+
+Do not upload the full GitHub repository zip. Upload `dist/skill.zip`.
+
+Example prompt:
+
+```text
+Review this code like a senior software engineer and improve it without overengineering.
+```
+
+### I want to use this with another AI coding agent
+
+1. Open or clone this repository.
+2. Give the agent `AGENTS.md` and the matching agent note such as `CODEX.md`, `CLAUDE.md`, `ANTIGRAVITY.md`, or `CURSOR.md`.
+3. Ask the agent to review or improve the code you care about using this repository guidance.
+
+Example prompt:
+
+```text
+Use this repository guidance to review the selected code for architecture, maintainability, and testability issues.
+```
+
+### I want to maintain the ChatGPT Skill package
+
+1. Edit the source files under `skill/`.
+2. Rebuild `dist/skill.zip`.
+3. Verify the zip contents.
+4. Commit the source changes and the updated package together.
+
 ## What problem it solves
 
 AI-generated code often works while still falling short of professional engineering standards. It can hide weak architecture, poor maintainability, low testability, unclear naming, leaky responsibilities, fragile error handling, or shortcuts that raise the cost of the next change.
@@ -100,51 +137,33 @@ software-engineering-code-reviewer/
 
 Outer repository files document the project and guide maintenance. They must stay outside the package archive.
 
-## Installation tutorials
+## Installation and use
 
 ### Install in ChatGPT
 
-Use `dist/skill.zip` as the installable package.
+Use `dist/skill.zip` to install the ChatGPT Skill. Do not upload the full GitHub repository zip.
 
 Follow the current ChatGPT Skills upload or import UI. Exact UI labels may change, so this repository intentionally provides the zip rather than hardcoding UI-specific steps.
 
-### Use with Codex
+### Use with other AI coding agents
 
-1. Clone or open the repository.
-2. Read `AGENTS.md` and `CODEX.md`.
-3. Edit source files under `skill/`.
-4. Rebuild `dist/skill.zip`.
-5. Inspect the zip contents.
-6. Commit both source changes and the updated zip.
+Use the repository instructions with Codex, Claude Code, Google Antigravity, Cursor, Windsurf, Cline, Aider, or similar AI coding agents.
 
-### Use with Claude Code
+1. Open or clone the repository.
+2. Add `AGENTS.md` to the agent context.
+3. Add the matching agent note when one exists: `CODEX.md`, `CLAUDE.md`, `ANTIGRAVITY.md`, or `CURSOR.md`.
+4. Provide the code, requirements, constraints, and desired scope for the review or refactor.
 
-1. Clone or open the repository.
-2. Read `AGENTS.md` and `CLAUDE.md`.
-3. Edit source files under `skill/`.
-4. Rebuild `dist/skill.zip`.
-5. Inspect the zip contents.
-6. Commit both source changes and the updated zip.
+You do not need to rebuild `dist/skill.zip` just to use the repository guidance with another agent.
 
-### Use with Google Antigravity
+### Agent notes
 
-1. Clone or open the repository.
-2. Read `AGENTS.md` and `ANTIGRAVITY.md`.
-3. Edit source files under `skill/`.
-4. Rebuild `dist/skill.zip`.
-5. Inspect the zip contents.
-6. Commit both source changes and the updated zip.
+- Codex: read `AGENTS.md` and `CODEX.md`.
+- Claude Code: read `AGENTS.md` and `CLAUDE.md`.
+- Google Antigravity: read `AGENTS.md` and `ANTIGRAVITY.md`.
+- Cursor, Windsurf, Cline, and Aider: read `AGENTS.md` and `CURSOR.md`.
 
-### Use with Cursor / Windsurf / Cline / Aider
-
-1. Open the repository in the editor.
-2. Add `AGENTS.md` and `CURSOR.md` to the agent context.
-3. Ask the agent to modify files under `skill/`.
-4. Rebuild `dist/skill.zip`.
-5. Inspect the zip contents.
-6. Commit both source changes and the updated zip.
-
-## Usage tutorials
+## Usage
 
 After installing the ChatGPT package or loading the repository guidance into another agent, provide the relevant code, requirements, constraints, and desired scope. State when behavior must be preserved before a refactor.
 
@@ -170,6 +189,8 @@ Example prompts:
 
 ## Updating the skill
 
+This section is for maintainers. Normal users can install `dist/skill.zip` without rebuilding it.
+
 Make skill changes under `skill/`, then rebuild `dist/skill.zip`. Keep source files and the generated archive synchronized in the same change.
 
 ## Development workflow
@@ -182,6 +203,8 @@ Make skill changes under `skill/`, then rebuild `dist/skill.zip`. Keep source fi
 6. Rebuild and verify the zip after every change.
 
 ## Packaging instructions
+
+These commands are for maintainers rebuilding the ChatGPT Skill package after source changes.
 
 Run the packaging recipe from the repository root:
 
