@@ -2,17 +2,18 @@
 
 ## Project purpose
 
-This repository provides multi-agent guidance for senior software engineering code review and includes a ChatGPT Skill named `software-engineering-code-reviewer`. The guidance helps AI coding agents review, refactor, write, and improve code with senior software engineering standards across programming languages.
+This repository is an AI coding agent instruction pack for senior software engineering code review, refactoring, architecture guidance, and maintainability. It helps AI coding agents review, refactor, write, and improve code with senior software engineering standards across programming languages.
 
-The packaged skill is instruction and reasoning guidance. It is not a code execution tool.
+The repository also includes an optional ChatGPT Skill package named `software-engineering-code-reviewer`. Coding agents use repository files as instruction context; they do not use `dist/skill.zip`.
 
 ## Repository structure
 
-- `skill/` is the skill source.
-- `skill/SKILL.md` contains concise skill metadata and core behavior instructions.
+- `AGENTS.md` is the repository-wide instruction entry point for coding agents.
+- `CODEX.md`, `CLAUDE.md`, `ANTIGRAVITY.md`, and `CURSOR.md` provide agent-specific repository guidance.
+- `skill/SKILL.md` contains concise core behavior instructions that coding agents can read when useful and that ChatGPT uses in the optional Skill package.
 - `skill/references/` contains detailed review, architecture, refactoring, naming, and response guidance.
-- `skill/agents/openai.yaml` contains ChatGPT UI metadata.
-- `dist/skill.zip` is generated from the contents of `skill/`.
+- `skill/agents/openai.yaml` contains ChatGPT Skill UI metadata only. It is irrelevant to other coding agents.
+- `dist/skill.zip` is the optional ChatGPT Skill package generated from the contents of `skill/`.
 - Outer repository files document the project and guide maintenance. They must not be packaged inside `dist/skill.zip`.
 
 ## Required behavior
@@ -20,7 +21,7 @@ The packaged skill is instruction and reasoning guidance. It is not a code execu
 - Preserve the senior-reviewer behavior.
 - Keep `SKILL.md` concise.
 - Move detailed guidance into `skill/references/`.
-- Keep the skill language-agnostic.
+- Keep the guidance language-agnostic.
 - Do not add numeric scoring systems.
 - Maintain "senior reviewer by default, mentor only when asked."
 - Do not praise code just because it works.
@@ -34,11 +35,11 @@ The packaged skill is instruction and reasoning guidance. It is not a code execu
 1. Read this file before editing.
 2. Edit the smallest useful set of files.
 3. Keep docs and skill references synchronized.
-4. Package the skill after changes.
+4. Rebuild the optional ChatGPT Skill package when packaged files under `skill/` change.
 5. Inspect the zip contents after packaging.
 6. Confirm the zip root contains `SKILL.md`, `agents/openai.yaml`, and `references/*.md`.
 7. Confirm the zip does not contain outer repository files.
-8. Commit source changes and `dist/skill.zip` together.
+8. Commit packaged source changes and `dist/skill.zip` together when the package is rebuilt.
 
 ## Packaging rules
 

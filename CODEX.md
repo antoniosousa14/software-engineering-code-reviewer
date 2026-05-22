@@ -6,16 +6,16 @@ For Codex-style agents:
 
 - Modify files directly in this repository.
 - Keep changes minimal, focused, and reviewable.
-- Treat `skill/` as the source of truth for the installable ChatGPT Skill package.
+- Use this repository as coding-agent instruction context; do not use `dist/skill.zip` for Codex work.
+- Read `skill/SKILL.md` and focused files in `skill/references/` when the task needs deeper guidance.
 - Keep `SKILL.md` compact; put detailed behavior in `skill/references/`.
 - Preserve senior-reviewer behavior and the "mentor only when asked" rule.
 - Do not add numeric scoring systems.
-- Package the skill after changes.
-- Verify `dist/skill.zip` contents before finishing.
+- Rebuild and verify `dist/skill.zip` only when packaged files under `skill/` change.
 - Create a clean commit message.
 - Do not invent external installation facts without checking current official docs.
 
-Packaging reminder:
+Optional ChatGPT package reminder:
 
 ```bash
 mkdir -p dist

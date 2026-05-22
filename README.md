@@ -2,15 +2,43 @@
 
 ## What this is
 
-Software Engineering Code Reviewer is an AI agent guidance repository with an installable ChatGPT Skill package.
+Software Engineering Code Reviewer is an AI coding agent instruction pack for senior-level code review, refactoring, architecture guidance, and maintainability.
 
-This repository provides AI-agent guidance for senior-level code review, refactoring, architecture improvement, and maintainability work across programming languages. It is meant for Codex, Claude Code, Google Antigravity, Cursor, Windsurf, Cline, Aider, ChatGPT, and similar AI coding agents.
+It is primarily designed for coding agents such as Codex, Claude Code, Cursor, Windsurf, Cline, Aider, Google Antigravity, and similar tools.
 
-The ChatGPT-specific source and package are contained inside the broader repository. Use `skill/` as the source of the skill. Use `dist/skill.zip` as the installable ChatGPT Skill package.
+It also includes an optional ChatGPT Skill package at `dist/skill.zip`.
+
+Use this repository as instruction context for AI coding agents. Coding agents read the repository instructions; they do not use the ChatGPT Skill zip.
 
 ## Quick start
 
-### I just want to use the ChatGPT Skill
+### Primary use: use with an AI coding agent
+
+Use this when working with Codex, Claude Code, Cursor, Windsurf, Cline, Aider, Google Antigravity, or a similar coding agent.
+
+1. Open this repository in the coding agent or editor.
+2. Ask the agent to read `AGENTS.md`.
+3. Ask it to read the matching agent file when relevant:
+   - `CODEX.md` for Codex
+   - `CLAUDE.md` for Claude Code
+   - `ANTIGRAVITY.md` for Google Antigravity
+   - `CURSOR.md` for Cursor, Windsurf, Cline, Aider, or similar editor-based agents
+4. Ask the agent to use the guidance in `skill/references/` when reviewing, refactoring, or improving code.
+5. Provide the code, requirements, constraints, and the scope of the requested change.
+
+Example prompts:
+
+```text
+Read AGENTS.md and use this repository's guidance to review my code like a senior software engineer.
+```
+
+```text
+Read AGENTS.md and the relevant reference files, then refactor this code for maintainability without overengineering it.
+```
+
+### Optional: install the ChatGPT Skill
+
+Use this only when you want the guidance installed in ChatGPT as a Skill.
 
 1. Download `dist/skill.zip`.
 2. Open ChatGPT.
@@ -20,30 +48,11 @@ The ChatGPT-specific source and package are contained inside the broader reposit
 
 Do not upload the full GitHub repository zip. Upload `dist/skill.zip`.
 
-Example prompt:
-
 ```text
 Review this code like a senior software engineer and improve it without overengineering.
 ```
 
-### I want to use this with another AI coding agent
-
-1. Open or clone this repository.
-2. Give the agent `AGENTS.md` and the matching agent note such as `CODEX.md`, `CLAUDE.md`, `ANTIGRAVITY.md`, or `CURSOR.md`.
-3. Ask the agent to review or improve the code you care about using this repository guidance.
-
-Example prompt:
-
-```text
-Use this repository guidance to review the selected code for architecture, maintainability, and testability issues.
-```
-
-### I want to maintain the ChatGPT Skill package
-
-1. Edit the source files under `skill/`.
-2. Rebuild `dist/skill.zip`.
-3. Verify the zip contents.
-4. Commit the source changes and the updated package together.
+`dist/skill.zip` is not needed when using this repository with coding agents.
 
 ## What problem it solves
 
@@ -121,40 +130,37 @@ software-engineering-code-reviewer/
     `-- skill.zip
 ```
 
-- `README.md` explains the project, installation paths, usage, and maintenance workflow.
-- `AGENTS.md` defines repository-wide instructions for coding agents.
+- `README.md` explains the instruction pack, the optional ChatGPT package, usage, and maintenance workflow.
+- `AGENTS.md` is the main repository-wide instruction entry point for coding agents.
 - `CODEX.md`, `CLAUDE.md`, `ANTIGRAVITY.md`, and `CURSOR.md` provide agent-specific repository guidance.
-- `skill/` is the source for the installable ChatGPT Skill package.
-- `dist/skill.zip` is the generated ChatGPT Skill package built from `skill/`.
+- `skill/SKILL.md` and `skill/references/` provide reusable instruction context and are also packaged for the optional ChatGPT Skill.
+- `skill/agents/openai.yaml` is ChatGPT Skill UI metadata. Coding agents do not need it.
+- `dist/skill.zip` is the optional ChatGPT Skill package built from `skill/`.
 - `CHANGELOG.md`, `LICENSE`, and `.gitignore` cover release history, licensing, and repository hygiene.
 
-## What is inside the skill
+## Instruction files and optional ChatGPT package
 
-- `skill/SKILL.md` contains the main ChatGPT Skill instructions and concise behavior rules.
-- `skill/agents/openai.yaml` contains ChatGPT UI metadata.
+- `AGENTS.md` defines the repository-wide operating model for coding agents.
+- `CODEX.md`, `CLAUDE.md`, `ANTIGRAVITY.md`, and `CURSOR.md` adapt that context for specific coding-agent workflows.
+- `skill/SKILL.md` contains concise core guidance that coding agents can read when useful and that ChatGPT uses inside the optional Skill package.
 - `skill/references/*.md` contains modular review, architecture, refactoring, naming, and response guidance loaded when relevant.
-- `dist/skill.zip` is generated from the contents of `skill/`.
+- `skill/agents/openai.yaml` exists only for ChatGPT Skill UI metadata. It is irrelevant to Codex, Claude Code, Cursor, Windsurf, Cline, Aider, Google Antigravity, and other coding agents.
+- `dist/skill.zip` is generated from `skill/` only for optional ChatGPT Skill installation or package maintenance.
 
 Outer repository files document the project and guide maintenance. They must stay outside the package archive.
 
-## Installation and use
+## Using the instruction pack
 
-### Install in ChatGPT
+### Use with coding agents
 
-Use `dist/skill.zip` to install the ChatGPT Skill. Do not upload the full GitHub repository zip.
+Use the repository files as instruction context with Codex, Claude Code, Google Antigravity, Cursor, Windsurf, Cline, Aider, or similar AI coding agents.
 
-Follow the current ChatGPT Skills upload or import UI. Exact UI labels may change, so this repository intentionally provides the zip rather than hardcoding UI-specific steps.
-
-### Use with other AI coding agents
-
-Use the repository instructions with Codex, Claude Code, Google Antigravity, Cursor, Windsurf, Cline, Aider, or similar AI coding agents.
-
-1. Open or clone the repository.
-2. Add `AGENTS.md` to the agent context.
-3. Add the matching agent note when one exists: `CODEX.md`, `CLAUDE.md`, `ANTIGRAVITY.md`, or `CURSOR.md`.
+1. Start with `AGENTS.md`.
+2. Add the matching agent note when one exists: `CODEX.md`, `CLAUDE.md`, `ANTIGRAVITY.md`, or `CURSOR.md`.
+3. Load `skill/SKILL.md` or focused files from `skill/references/` when the task benefits from deeper guidance.
 4. Provide the code, requirements, constraints, and desired scope for the review or refactor.
 
-You do not need to rebuild `dist/skill.zip` just to use the repository guidance with another agent.
+Coding agents do not install or consume `dist/skill.zip`.
 
 ### Agent notes
 
@@ -163,9 +169,15 @@ You do not need to rebuild `dist/skill.zip` just to use the repository guidance 
 - Google Antigravity: read `AGENTS.md` and `ANTIGRAVITY.md`.
 - Cursor, Windsurf, Cline, and Aider: read `AGENTS.md` and `CURSOR.md`.
 
+### Optional: install in ChatGPT
+
+Use `dist/skill.zip` to install the optional ChatGPT Skill. Do not upload the full GitHub repository zip.
+
+Follow the current ChatGPT Skills upload or import UI. Exact UI labels may change, so this repository intentionally provides the zip rather than hardcoding UI-specific steps.
+
 ## Usage
 
-After installing the ChatGPT package or loading the repository guidance into another agent, provide the relevant code, requirements, constraints, and desired scope. State when behavior must be preserved before a refactor.
+After loading the repository guidance into a coding agent, or optionally installing the ChatGPT Skill package, provide the relevant code, requirements, constraints, and desired scope. State when behavior must be preserved before a refactor.
 
 Example prompts:
 
@@ -187,11 +199,11 @@ Example prompts:
 - Mention trade-offs when a design choice changes complexity, coupling, performance, or flexibility.
 - Avoid numeric code-quality scores.
 
-## Updating the skill
+## Updating packaged guidance
 
-This section is for maintainers. Normal users can install `dist/skill.zip` without rebuilding it.
+This section is for maintainers of the optional ChatGPT Skill package. Coding-agent users do not need `dist/skill.zip`.
 
-Make skill changes under `skill/`, then rebuild `dist/skill.zip`. Keep source files and the generated archive synchronized in the same change.
+When changes under `skill/` should ship in ChatGPT, rebuild `dist/skill.zip`. Keep packaged source files and the generated archive synchronized in the same change.
 
 ## Development workflow
 
@@ -200,11 +212,11 @@ Make skill changes under `skill/`, then rebuild `dist/skill.zip`. Keep source fi
 3. Keep guidance language-agnostic.
 4. Avoid numeric scoring.
 5. Preserve the senior reviewer behavior.
-6. Rebuild and verify the zip after every change.
+6. Rebuild and verify the zip when packaged files under `skill/` change.
 
 ## Packaging instructions
 
-These commands are for maintainers rebuilding the ChatGPT Skill package after source changes.
+These commands are for maintainers rebuilding the optional ChatGPT Skill package after packaged source changes.
 
 Run the packaging recipe from the repository root:
 
@@ -271,7 +283,7 @@ The zip must not contain:
 
 ### Is this only for ChatGPT?
 
-No. The repository provides guidance for AI coding agents generally. `dist/skill.zip` is the installable ChatGPT package.
+No. This repository is primarily an instruction pack for coding agents. `dist/skill.zip` is an optional ChatGPT Skill package.
 
 ### Does this force overengineering?
 
@@ -287,7 +299,7 @@ Yes. The guidance is language-agnostic and expects agents to follow idioms of th
 
 ### What is the difference between `skill/` and `dist/skill.zip`?
 
-`skill/` is the editable source for the ChatGPT Skill. `dist/skill.zip` is the generated installable package built from that source.
+`skill/` contains reusable guidance files that coding agents can read and the source packaged for ChatGPT. `dist/skill.zip` is the generated ChatGPT installable package; coding agents do not need it.
 
 ## License
 
